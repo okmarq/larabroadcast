@@ -1,5 +1,8 @@
 <?php
 
+use App\Auth\SignInController;
+use App\Auth\SignOutController;
+use App\Auth\SignUpController;
 use App\Domain\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware'=>['auth:sanctum']], function () {
+    Route::post('sign-out', [SignOutController::class, 'signOut'])->name('sign-out');
+    Route::apiResource('users', UserController::class);
 });
 
-Route::apiResource('users', UserController::class);
+Route::post('sign-up', [SignUpController::class, 'signUp'])->name('register');
+Route::post('sign-in', [SignInController::class, 'signUp'])->name('sign-in');
