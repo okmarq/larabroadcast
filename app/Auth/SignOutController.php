@@ -4,6 +4,7 @@ namespace App\Auth;
 
 use App\Domain\User\UserRepository;
 use App\Domain\User\UserResource;
+use App\Events\UserOnlineStatusChanged;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 

@@ -23,5 +23,5 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::apiResource('users', UserController::class);
 });
 
-Route::post('sign-up', [SignUpController::class, 'signUp'])->name('register');
-Route::post('sign-in', [SignInController::class, 'signUp'])->name('sign-in');
+Route::post('signup', [SignUpController::class, 'signUp'])->name('signup');
+Route::post('sign-in', [SignInController::class, 'signIn'])->name('sign-in');

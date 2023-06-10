@@ -2,11 +2,13 @@
 
 namespace App\Domain\User;
 
+use App\Auth\SignUpRequest;
+
 class UserRepository
 {
-    public function create(array $data): User
+    public function create(SignUpRequest $request): User
     {
-        return User::create($data);
+        return User::create($request->all());
     }
 
     public function update(User $user, array $data): bool

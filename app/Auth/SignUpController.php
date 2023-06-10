@@ -12,10 +12,8 @@ class SignUpController extends Controller
     public function signUp(SignUpRequest $request)
     {
         $request->merge(['password' => Hash::make($request['password'])]);
-        $user = (new UserRepository)->findByEmail($request['email']);
-        $token = $user->createToken('SignUp')->plainTextToken;
-
         $user = (new UserRepository)->create($request);
+        $token = $user->createToken('SignUp')->plainTextToken;
 
         return response([
             'user' => new UserResource($user),
